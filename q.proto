@@ -1,0 +1,53 @@
+
+syntax = "proto3";
+
+import "qubit.proto";
+import "math.proto";
+
+option java_multiple_files = true;
+option java_package = "com.github/sah4ez";
+option java_outer_classname = "qsim";
+
+package qsim;
+
+message Q {
+	qubit.Qubit qubit = 1;
+}
+
+service Qsim {
+	rpc H(QRequest) returns (QResponse){}
+	rpc X(QRequest) returns (QResponse){}
+	rpc Y(QRequest) returns (QResponse){}
+	rpc Z(QRequest) returns (QResponse){}
+	rpc S(QRequest) returns (QResponse){}
+	rpc T(QRequest) returns (QResponse){}
+	rpc Apply(ApplyRequest) returns (QResponse){}
+	rpc ControlledR(ControlledRequest) returns (QResponse){}
+	rpc ControlledZ(ControlledRequest) returns (QResponse){}
+	rpc ControlledNOT(ControlledRequest) returns (QResponse){}
+	rpc QFT(None) returns (QResponse){}
+	rpc InverseQFT(None) returns (QResponse){}
+}
+
+message None {
+}
+
+message QRequest {
+	repeated Q q = 1;
+}
+
+message ApplyRequest {
+	math.Matrix m = 1;
+	repeated Q q = 2;
+}
+
+message ControlledRequest {
+	repeated Q control = 1;
+	Q target = 2;
+	int64 k = 3;
+}
+
+message QResponse{
+	Q q = 1;
+}
+

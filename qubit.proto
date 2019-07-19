@@ -1,0 +1,14 @@
+
+syntax = "proto3";
+
+import "math.proto";
+
+option java_multiple_files = true;
+option java_package = "com.github/sah4ez";
+option java_outer_classname = "qubit";
+
+package qubit;
+
+message Qubit {
+	math.Vector vector = 1;
+}

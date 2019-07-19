@@ -1,0 +1,21 @@
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github/sah4ez";
+option java_outer_classname = "math";
+
+package math;
+
+message Complex128 {
+	double absolute = 1;
+	double theta = 2;
+}
+
+message Vector {
+	repeated Complex128 vector = 1;
+}
+
+message Matrix {
+	repeated Vector vectors = 1;
+}
