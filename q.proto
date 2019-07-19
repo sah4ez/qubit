@@ -25,11 +25,8 @@ service Qsim {
 	rpc ControlledR(ControlledRequest) returns (QResponse){}
 	rpc ControlledZ(ControlledRequest) returns (QResponse){}
 	rpc ControlledNOT(ControlledRequest) returns (QResponse){}
-	rpc QFT(None) returns (QResponse){}
-	rpc InverseQFT(None) returns (QResponse){}
-}
-
-message None {
+	rpc QFT(qubit.Empty) returns (QResponse){}
+	rpc InverseQFT(qubit.Empty) returns (QResponse){}
 }
 
 message QRequest {
