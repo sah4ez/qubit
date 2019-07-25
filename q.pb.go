@@ -2,24 +2,24 @@
 // source: q.proto
 
 /*
-Package qsim is a generated protocol buffer package.
+Package qubit is a generated protocol buffer package.
 
 It is generated from these files:
 	q.proto
 
 It has these top-level messages:
 	Q
-	QRequest
+	QsimRequest
 	ApplyRequest
 	ControlledRequest
-	QResponse
+	QsimResponse
 */
-package qsim
+package qubit
 
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import qubit "qubit"
+import qubit1 "."
 import math1 "math"
 
 import (
@@ -39,7 +39,7 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type Q struct {
-	Qubit *qubit.Qubit `protobuf:"bytes,1,opt,name=qubit" json:"qubit,omitempty"`
+	Qubit *qubit1.Qubit `protobuf:"bytes,1,opt,name=qubit" json:"qubit,omitempty"`
 }
 
 func (m *Q) Reset()                    { *m = Q{} }
@@ -47,23 +47,23 @@ func (m *Q) String() string            { return proto.CompactTextString(m) }
 func (*Q) ProtoMessage()               {}
 func (*Q) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
 
-func (m *Q) GetQubit() *qubit.Qubit {
+func (m *Q) GetQubit() *qubit1.Qubit {
 	if m != nil {
 		return m.Qubit
 	}
 	return nil
 }
 
-type QRequest struct {
+type QsimRequest struct {
 	Q []*Q `protobuf:"bytes,1,rep,name=q" json:"q,omitempty"`
 }
 
-func (m *QRequest) Reset()                    { *m = QRequest{} }
-func (m *QRequest) String() string            { return proto.CompactTextString(m) }
-func (*QRequest) ProtoMessage()               {}
-func (*QRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (m *QsimRequest) Reset()                    { *m = QsimRequest{} }
+func (m *QsimRequest) String() string            { return proto.CompactTextString(m) }
+func (*QsimRequest) ProtoMessage()               {}
+func (*QsimRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
-func (m *QRequest) GetQ() []*Q {
+func (m *QsimRequest) GetQ() []*Q {
 	if m != nil {
 		return m.Q
 	}
@@ -126,16 +126,16 @@ func (m *ControlledRequest) GetK() int64 {
 	return 0
 }
 
-type QResponse struct {
+type QsimResponse struct {
 	Q *Q `protobuf:"bytes,1,opt,name=q" json:"q,omitempty"`
 }
 
-func (m *QResponse) Reset()                    { *m = QResponse{} }
-func (m *QResponse) String() string            { return proto.CompactTextString(m) }
-func (*QResponse) ProtoMessage()               {}
-func (*QResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (m *QsimResponse) Reset()                    { *m = QsimResponse{} }
+func (m *QsimResponse) String() string            { return proto.CompactTextString(m) }
+func (*QsimResponse) ProtoMessage()               {}
+func (*QsimResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
 
-func (m *QResponse) GetQ() *Q {
+func (m *QsimResponse) GetQ() *Q {
 	if m != nil {
 		return m.Q
 	}
@@ -143,11 +143,11 @@ func (m *QResponse) GetQ() *Q {
 }
 
 func init() {
-	proto.RegisterType((*Q)(nil), "qsim.Q")
-	proto.RegisterType((*QRequest)(nil), "qsim.QRequest")
-	proto.RegisterType((*ApplyRequest)(nil), "qsim.ApplyRequest")
-	proto.RegisterType((*ControlledRequest)(nil), "qsim.ControlledRequest")
-	proto.RegisterType((*QResponse)(nil), "qsim.QResponse")
+	proto.RegisterType((*Q)(nil), "qubit.Q")
+	proto.RegisterType((*QsimRequest)(nil), "qubit.QsimRequest")
+	proto.RegisterType((*ApplyRequest)(nil), "qubit.ApplyRequest")
+	proto.RegisterType((*ControlledRequest)(nil), "qubit.ControlledRequest")
+	proto.RegisterType((*QsimResponse)(nil), "qubit.QsimResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -161,18 +161,18 @@ const _ = grpc.SupportPackageIsVersion4
 // Client API for Qsim service
 
 type QsimClient interface {
-	H(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error)
-	X(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error)
-	Y(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error)
-	Z(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error)
-	S(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error)
-	T(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error)
-	Apply(ctx context.Context, in *ApplyRequest, opts ...grpc.CallOption) (*QResponse, error)
-	ControlledR(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QResponse, error)
-	ControlledZ(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QResponse, error)
-	ControlledNOT(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QResponse, error)
-	QFT(ctx context.Context, in *qubit.Empty, opts ...grpc.CallOption) (*QResponse, error)
-	InverseQFT(ctx context.Context, in *qubit.Empty, opts ...grpc.CallOption) (*QResponse, error)
+	H(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error)
+	X(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error)
+	Y(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error)
+	Z(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error)
+	S(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error)
+	T(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error)
+	Apply(ctx context.Context, in *ApplyRequest, opts ...grpc.CallOption) (*QsimResponse, error)
+	ControlledR(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QsimResponse, error)
+	ControlledZ(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QsimResponse, error)
+	ControlledNOT(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QsimResponse, error)
+	QFT(ctx context.Context, in *qubit1.Empty, opts ...grpc.CallOption) (*QsimResponse, error)
+	InverseQFT(ctx context.Context, in *qubit1.Empty, opts ...grpc.CallOption) (*QsimResponse, error)
 }
 
 type qsimClient struct {
@@ -183,108 +183,108 @@ func NewQsimClient(cc *grpc.ClientConn) QsimClient {
 	return &qsimClient{cc}
 }
 
-func (c *qsimClient) H(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/H", in, out, c.cc, opts...)
+func (c *qsimClient) H(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/H", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) X(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/X", in, out, c.cc, opts...)
+func (c *qsimClient) X(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/X", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) Y(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/Y", in, out, c.cc, opts...)
+func (c *qsimClient) Y(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/Y", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) Z(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/Z", in, out, c.cc, opts...)
+func (c *qsimClient) Z(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/Z", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) S(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/S", in, out, c.cc, opts...)
+func (c *qsimClient) S(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/S", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) T(ctx context.Context, in *QRequest, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/T", in, out, c.cc, opts...)
+func (c *qsimClient) T(ctx context.Context, in *QsimRequest, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/T", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) Apply(ctx context.Context, in *ApplyRequest, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/Apply", in, out, c.cc, opts...)
+func (c *qsimClient) Apply(ctx context.Context, in *ApplyRequest, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/Apply", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) ControlledR(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/ControlledR", in, out, c.cc, opts...)
+func (c *qsimClient) ControlledR(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/ControlledR", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) ControlledZ(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/ControlledZ", in, out, c.cc, opts...)
+func (c *qsimClient) ControlledZ(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/ControlledZ", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) ControlledNOT(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/ControlledNOT", in, out, c.cc, opts...)
+func (c *qsimClient) ControlledNOT(ctx context.Context, in *ControlledRequest, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/ControlledNOT", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) QFT(ctx context.Context, in *qubit.Empty, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/QFT", in, out, c.cc, opts...)
+func (c *qsimClient) QFT(ctx context.Context, in *qubit1.Empty, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/QFT", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *qsimClient) InverseQFT(ctx context.Context, in *qubit.Empty, opts ...grpc.CallOption) (*QResponse, error) {
-	out := new(QResponse)
-	err := grpc.Invoke(ctx, "/qsim.Qsim/InverseQFT", in, out, c.cc, opts...)
+func (c *qsimClient) InverseQFT(ctx context.Context, in *qubit1.Empty, opts ...grpc.CallOption) (*QsimResponse, error) {
+	out := new(QsimResponse)
+	err := grpc.Invoke(ctx, "/qubit.Qsim/InverseQFT", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -294,18 +294,18 @@ func (c *qsimClient) InverseQFT(ctx context.Context, in *qubit.Empty, opts ...gr
 // Server API for Qsim service
 
 type QsimServer interface {
-	H(context.Context, *QRequest) (*QResponse, error)
-	X(context.Context, *QRequest) (*QResponse, error)
-	Y(context.Context, *QRequest) (*QResponse, error)
-	Z(context.Context, *QRequest) (*QResponse, error)
-	S(context.Context, *QRequest) (*QResponse, error)
-	T(context.Context, *QRequest) (*QResponse, error)
-	Apply(context.Context, *ApplyRequest) (*QResponse, error)
-	ControlledR(context.Context, *ControlledRequest) (*QResponse, error)
-	ControlledZ(context.Context, *ControlledRequest) (*QResponse, error)
-	ControlledNOT(context.Context, *ControlledRequest) (*QResponse, error)
-	QFT(context.Context, *qubit.Empty) (*QResponse, error)
-	InverseQFT(context.Context, *qubit.Empty) (*QResponse, error)
+	H(context.Context, *QsimRequest) (*QsimResponse, error)
+	X(context.Context, *QsimRequest) (*QsimResponse, error)
+	Y(context.Context, *QsimRequest) (*QsimResponse, error)
+	Z(context.Context, *QsimRequest) (*QsimResponse, error)
+	S(context.Context, *QsimRequest) (*QsimResponse, error)
+	T(context.Context, *QsimRequest) (*QsimResponse, error)
+	Apply(context.Context, *ApplyRequest) (*QsimResponse, error)
+	ControlledR(context.Context, *ControlledRequest) (*QsimResponse, error)
+	ControlledZ(context.Context, *ControlledRequest) (*QsimResponse, error)
+	ControlledNOT(context.Context, *ControlledRequest) (*QsimResponse, error)
+	QFT(context.Context, *qubit1.Empty) (*QsimResponse, error)
+	InverseQFT(context.Context, *qubit1.Empty) (*QsimResponse, error)
 }
 
 func RegisterQsimServer(s *grpc.Server, srv QsimServer) {
@@ -313,7 +313,7 @@ func RegisterQsimServer(s *grpc.Server, srv QsimServer) {
 }
 
 func _Qsim_H_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QRequest)
+	in := new(QsimRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -322,16 +322,16 @@ func _Qsim_H_Handler(srv interface{}, ctx context.Context, dec func(interface{})
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/H",
+		FullMethod: "/qubit.Qsim/H",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QsimServer).H(ctx, req.(*QRequest))
+		return srv.(QsimServer).H(ctx, req.(*QsimRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Qsim_X_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QRequest)
+	in := new(QsimRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -340,16 +340,16 @@ func _Qsim_X_Handler(srv interface{}, ctx context.Context, dec func(interface{})
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/X",
+		FullMethod: "/qubit.Qsim/X",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QsimServer).X(ctx, req.(*QRequest))
+		return srv.(QsimServer).X(ctx, req.(*QsimRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Qsim_Y_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QRequest)
+	in := new(QsimRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -358,16 +358,16 @@ func _Qsim_Y_Handler(srv interface{}, ctx context.Context, dec func(interface{})
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/Y",
+		FullMethod: "/qubit.Qsim/Y",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QsimServer).Y(ctx, req.(*QRequest))
+		return srv.(QsimServer).Y(ctx, req.(*QsimRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Qsim_Z_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QRequest)
+	in := new(QsimRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -376,16 +376,16 @@ func _Qsim_Z_Handler(srv interface{}, ctx context.Context, dec func(interface{})
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/Z",
+		FullMethod: "/qubit.Qsim/Z",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QsimServer).Z(ctx, req.(*QRequest))
+		return srv.(QsimServer).Z(ctx, req.(*QsimRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Qsim_S_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QRequest)
+	in := new(QsimRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -394,16 +394,16 @@ func _Qsim_S_Handler(srv interface{}, ctx context.Context, dec func(interface{})
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/S",
+		FullMethod: "/qubit.Qsim/S",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QsimServer).S(ctx, req.(*QRequest))
+		return srv.(QsimServer).S(ctx, req.(*QsimRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Qsim_T_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QRequest)
+	in := new(QsimRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -412,10 +412,10 @@ func _Qsim_T_Handler(srv interface{}, ctx context.Context, dec func(interface{})
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/T",
+		FullMethod: "/qubit.Qsim/T",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QsimServer).T(ctx, req.(*QRequest))
+		return srv.(QsimServer).T(ctx, req.(*QsimRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -430,7 +430,7 @@ func _Qsim_Apply_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/Apply",
+		FullMethod: "/qubit.Qsim/Apply",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QsimServer).Apply(ctx, req.(*ApplyRequest))
@@ -448,7 +448,7 @@ func _Qsim_ControlledR_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/ControlledR",
+		FullMethod: "/qubit.Qsim/ControlledR",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QsimServer).ControlledR(ctx, req.(*ControlledRequest))
@@ -466,7 +466,7 @@ func _Qsim_ControlledZ_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/ControlledZ",
+		FullMethod: "/qubit.Qsim/ControlledZ",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QsimServer).ControlledZ(ctx, req.(*ControlledRequest))
@@ -484,7 +484,7 @@ func _Qsim_ControlledNOT_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/ControlledNOT",
+		FullMethod: "/qubit.Qsim/ControlledNOT",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QsimServer).ControlledNOT(ctx, req.(*ControlledRequest))
@@ -493,7 +493,7 @@ func _Qsim_ControlledNOT_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _Qsim_QFT_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(qubit.Empty)
+	in := new(qubit1.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -502,16 +502,16 @@ func _Qsim_QFT_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/QFT",
+		FullMethod: "/qubit.Qsim/QFT",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QsimServer).QFT(ctx, req.(*qubit.Empty))
+		return srv.(QsimServer).QFT(ctx, req.(*qubit1.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Qsim_InverseQFT_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(qubit.Empty)
+	in := new(qubit1.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -520,16 +520,16 @@ func _Qsim_InverseQFT_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/qsim.Qsim/InverseQFT",
+		FullMethod: "/qubit.Qsim/InverseQFT",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QsimServer).InverseQFT(ctx, req.(*qubit.Empty))
+		return srv.(QsimServer).InverseQFT(ctx, req.(*qubit1.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 var _Qsim_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "qsim.Qsim",
+	ServiceName: "qubit.Qsim",
 	HandlerType: (*QsimServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -588,28 +588,28 @@ var _Qsim_serviceDesc = grpc.ServiceDesc{
 func init() { proto.RegisterFile("q.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 367 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x93, 0xcb, 0x4f, 0xc2, 0x40,
-	0x10, 0xc6, 0x1d, 0xca, 0x43, 0x07, 0x94, 0xb0, 0x89, 0xb1, 0xa9, 0x07, 0xa1, 0x07, 0xe4, 0x62,
-	0x49, 0xd0, 0x8b, 0xf1, 0x04, 0x46, 0xa3, 0x07, 0x1f, 0xad, 0x1c, 0x94, 0x5b, 0xc1, 0x0d, 0x34,
-	0xb0, 0xf4, 0xb1, 0x8b, 0x11, 0xff, 0x2a, 0xff, 0x44, 0xd3, 0x5d, 0x8b, 0x28, 0x24, 0x96, 0xcb,
-	0x24, 0x9d, 0xf9, 0xcd, 0xf7, 0x6d, 0xf3, 0xed, 0x62, 0x21, 0xb4, 0x82, 0xc8, 0x17, 0x3e, 0xc9,
-	0x86, 0xdc, 0x63, 0x46, 0x25, 0x9c, 0xf5, 0x3d, 0xd1, 0x94, 0x55, 0x0d, 0x8c, 0x32, 0x73, 0xc5,
-	0xa8, 0x19, 0x17, 0xd5, 0x30, 0x8f, 0x11, 0x6c, 0x62, 0x62, 0x4e, 0x42, 0x3a, 0x54, 0xa1, 0x51,
-	0x6c, 0x95, 0x2c, 0xb5, 0x62, 0xc7, 0xd5, 0x51, 0x23, 0xb3, 0x86, 0xdb, 0xb6, 0x43, 0xc3, 0x19,
-	0xe5, 0x82, 0xec, 0x23, 0x84, 0x3a, 0x54, 0xb5, 0x46, 0xb1, 0x55, 0xb0, 0x62, 0x2b, 0xcb, 0x76,
-	0x20, 0x34, 0xdb, 0x58, 0x6a, 0x07, 0xc1, 0x64, 0x9e, 0x60, 0x06, 0x02, 0x5b, 0x48, 0x4a, 0xcf,
-	0x3b, 0x57, 0x44, 0xde, 0xbb, 0x03, 0x4c, 0x49, 0x64, 0x56, 0x24, 0x28, 0x56, 0x2e, 0xfd, 0xa9,
-	0x88, 0xfc, 0xc9, 0x84, 0xbe, 0x26, 0x3a, 0x35, 0x2c, 0x0c, 0x54, 0xf3, 0xaf, 0x69, 0xd2, 0x27,
-	0x47, 0x98, 0x17, 0x6e, 0x34, 0xa4, 0x42, 0xcf, 0x48, 0xbf, 0x05, 0xf1, 0xdd, 0x26, 0x25, 0x84,
-	0xb1, 0xae, 0x55, 0xa1, 0xa1, 0x39, 0x30, 0x36, 0x4d, 0xdc, 0xb1, 0x1d, 0xca, 0x03, 0x7f, 0xca,
-	0x69, 0xf2, 0x37, 0xf0, 0xfb, 0x28, 0xad, 0xcf, 0x2c, 0x66, 0x6d, 0xee, 0x31, 0x52, 0x47, 0xb8,
-	0x21, 0x7b, 0xc9, 0x44, 0x9d, 0xc9, 0x28, 0x2f, 0xbe, 0x95, 0x8a, 0xb9, 0x15, 0x73, 0xcf, 0x29,
-	0xb9, 0x97, 0x94, 0x5c, 0x2f, 0x25, 0xf7, 0x94, 0x92, 0xeb, 0xa6, 0xe1, 0x2c, 0xcc, 0xc9, 0x18,
-	0x09, 0x51, 0xb3, 0xe5, 0x4c, 0xd7, 0xf1, 0xe7, 0x58, 0x5c, 0xca, 0x8c, 0x1c, 0x28, 0x62, 0x25,
-	0xc6, 0x7f, 0x57, 0x7b, 0x1b, 0xad, 0x5e, 0xe0, 0xee, 0x0f, 0x77, 0xff, 0xd0, 0xdd, 0x68, 0xb9,
-	0x8e, 0x9a, 0x7d, 0xdd, 0x25, 0xc9, 0x45, 0xbf, 0x62, 0x81, 0x98, 0xaf, 0xe3, 0x4e, 0x10, 0x6f,
-	0xa7, 0x6f, 0x34, 0xe2, 0x34, 0x0d, 0xde, 0x39, 0xc4, 0xca, 0xc0, 0x67, 0xd6, 0xd0, 0x13, 0xa3,
-	0x59, 0xbf, 0xc9, 0xdd, 0xd1, 0x19, 0xfd, 0xe8, 0xc8, 0xb7, 0xf8, 0x08, 0xfd, 0xbc, 0x7c, 0x70,
-	0xa7, 0x5f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xcb, 0x3e, 0x86, 0xf0, 0xa5, 0x03, 0x00, 0x00,
+	// 361 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x93, 0xcb, 0x4f, 0xf2, 0x40,
+	0x14, 0xc5, 0xbf, 0x4b, 0x79, 0x7c, 0xb9, 0xad, 0x31, 0x8c, 0x89, 0x69, 0xea, 0xa6, 0x69, 0xa2,
+	0x12, 0x17, 0x25, 0x82, 0x6b, 0xa3, 0x18, 0x8d, 0x2e, 0x7c, 0xb4, 0xb2, 0x50, 0x76, 0x05, 0x27,
+	0xd0, 0x40, 0xe9, 0x63, 0x06, 0x23, 0xfe, 0xed, 0x2e, 0x4c, 0x3b, 0x8c, 0xa0, 0x84, 0x84, 0xd9,
+	0x4c, 0x93, 0x73, 0x7f, 0xe7, 0xdc, 0xce, 0xe3, 0x62, 0x2d, 0x75, 0x93, 0x2c, 0xe6, 0x31, 0xa9,
+	0xa4, 0xb3, 0x7e, 0xc8, 0x2d, 0xbd, 0xf8, 0x08, 0xcd, 0xda, 0x8d, 0x02, 0x3e, 0x6a, 0xe6, 0x8b,
+	0x10, 0x9c, 0x63, 0x04, 0x8f, 0x38, 0x28, 0x58, 0x13, 0x6c, 0x68, 0xe8, 0x2d, 0xc3, 0x15, 0x16,
+	0x2f, 0x5f, 0x7d, 0x51, 0x72, 0x0e, 0x51, 0xf7, 0x58, 0x18, 0xf9, 0x34, 0x9d, 0x51, 0xc6, 0xc9,
+	0x3e, 0x42, 0x6a, 0x82, 0xad, 0x35, 0xf4, 0xd6, 0x7f, 0x89, 0xfb, 0x90, 0x3a, 0x1d, 0x34, 0x2e,
+	0x93, 0x64, 0x32, 0x97, 0x9c, 0x85, 0x10, 0xfd, 0xc4, 0x16, 0x7d, 0xef, 0x03, 0x9e, 0x85, 0x1f,
+	0x3e, 0x44, 0x22, 0xa3, 0xb4, 0x9e, 0x31, 0xc4, 0xfa, 0x55, 0x3c, 0xe5, 0x59, 0x3c, 0x99, 0xd0,
+	0x37, 0x19, 0xe4, 0x60, 0x6d, 0x20, 0xc4, 0xb5, 0xb6, 0xb2, 0x40, 0x6c, 0xac, 0xf2, 0x20, 0x1b,
+	0x52, 0x6e, 0x96, 0x8a, 0x8e, 0x4b, 0x64, 0xa1, 0x13, 0x03, 0x61, 0x6c, 0x6a, 0x36, 0x34, 0x34,
+	0x1f, 0xc6, 0xce, 0x11, 0x1a, 0x62, 0x4f, 0x2c, 0x89, 0xa7, 0x8c, 0xca, 0x4d, 0xc1, 0x9f, 0x1f,
+	0x6a, 0x7d, 0x95, 0xb1, 0x9c, 0x83, 0xc4, 0x45, 0xb8, 0x25, 0x44, 0x96, 0x96, 0xc7, 0x61, 0xed,
+	0xfd, 0xd2, 0x44, 0x9c, 0xf3, 0x2f, 0xe7, 0x5f, 0x14, 0xf9, 0x57, 0x45, 0xbe, 0xa7, 0xc8, 0x3f,
+	0x2b, 0xf2, 0x5d, 0x15, 0xbe, 0x8d, 0x95, 0xe2, 0xf6, 0x89, 0xac, 0xaf, 0xbe, 0x85, 0x4d, 0xa6,
+	0x73, 0xd4, 0x57, 0xae, 0x9b, 0x98, 0x0b, 0x6a, 0xed, 0x09, 0x6c, 0xe5, 0xef, 0xa9, 0xfb, 0x2f,
+	0x70, 0x67, 0xc9, 0x3e, 0x3c, 0x76, 0xd5, 0x13, 0x4e, 0x50, 0xf3, 0x6e, 0xba, 0x44, 0xce, 0xcd,
+	0x75, 0x94, 0xf0, 0xf9, 0x26, 0xf6, 0x14, 0xf1, 0x6e, 0xfa, 0x4e, 0x33, 0x46, 0xb7, 0xb5, 0x74,
+	0x0e, 0xb0, 0x3e, 0x88, 0x23, 0x77, 0x18, 0xf2, 0xd1, 0xac, 0xdf, 0x64, 0xc1, 0xe8, 0x8c, 0x7e,
+	0x76, 0xca, 0x29, 0x0b, 0xa3, 0x27, 0xe8, 0x57, 0x8b, 0x39, 0x6e, 0x7f, 0x07, 0x00, 0x00, 0xff,
+	0xff, 0xcb, 0x59, 0x2c, 0x34, 0xf7, 0x03, 0x00, 0x00,
 }

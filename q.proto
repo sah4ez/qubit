@@ -1,35 +1,35 @@
 
 syntax = "proto3";
 
-import "qubit/qubit.proto";
+import "qubit.proto";
 import "math/math.proto";
 
 option java_multiple_files = true;
 option java_package = "com.github/sah4ez";
 option java_outer_classname = "qsim";
 
-package qsim;
+package qubit;
 
 message Q {
 	qubit.Qubit qubit = 1;
 }
 
 service Qsim {
-	rpc H(QRequest) returns (QResponse){}
-	rpc X(QRequest) returns (QResponse){}
-	rpc Y(QRequest) returns (QResponse){}
-	rpc Z(QRequest) returns (QResponse){}
-	rpc S(QRequest) returns (QResponse){}
-	rpc T(QRequest) returns (QResponse){}
-	rpc Apply(ApplyRequest) returns (QResponse){}
-	rpc ControlledR(ControlledRequest) returns (QResponse){}
-	rpc ControlledZ(ControlledRequest) returns (QResponse){}
-	rpc ControlledNOT(ControlledRequest) returns (QResponse){}
-	rpc QFT(qubit.Empty) returns (QResponse){}
-	rpc InverseQFT(qubit.Empty) returns (QResponse){}
+	rpc H(QsimRequest) returns (QsimResponse){}
+	rpc X(QsimRequest) returns (QsimResponse){}
+	rpc Y(QsimRequest) returns (QsimResponse){}
+	rpc Z(QsimRequest) returns (QsimResponse){}
+	rpc S(QsimRequest) returns (QsimResponse){}
+	rpc T(QsimRequest) returns (QsimResponse){}
+	rpc Apply(ApplyRequest) returns (QsimResponse){}
+	rpc ControlledR(ControlledRequest) returns (QsimResponse){}
+	rpc ControlledZ(ControlledRequest) returns (QsimResponse){}
+	rpc ControlledNOT(ControlledRequest) returns (QsimResponse){}
+	rpc QFT(qubit.Empty) returns (QsimResponse){}
+	rpc InverseQFT(qubit.Empty) returns (QsimResponse){}
 }
 
-message QRequest {
+message QsimRequest {
 	repeated Q q = 1;
 }
 
@@ -44,7 +44,7 @@ message ControlledRequest {
 	int64 k = 3;
 }
 
-message QResponse{
+message QsimResponse{
 	Q q = 1;
 }
 
