@@ -1,0 +1,98 @@
+
+syntax = "proto3";
+
+import "math/math.proto";
+
+option java_multiple_files = true;
+option java_package = "com.github/sah4ez";
+option java_outer_classname = "qubit";
+
+package qubit;
+
+message Qubit {
+	math.Vector vector = 1;
+}
+
+service QQubit {
+	rpc NumberOfBit(Empty) returns (NumberOfBitResponse){}
+	rpc IsZero(EpsRequest) returns (BoolResponse){}
+	rpc IsOne(EpsRequest) returns (BoolResponse){}
+	rpc InnerProduct(QRequest) returns (Complex128Response) {}
+	rpc OuterProduct(QRequest) returns (MatrixResponse) {}
+	rpc Fidelity(QRequest) returns (DoubleResponse) {}
+	rpc TraceDistance(QRequest) returns (DoubleResponse) {}
+	rpc Equals(EqualsRequest) returns (BoolResponse) {}
+	rpc TensorProduct(QRequest) returns (QResponse) {}
+	rpc Apply(MatrixRequest) returns (QResponse) {}
+	rpc Normalize(Empty) returns (QResponse) {}
+	rpc Amplitude(Empty) returns (AmplitudeResponse) {}
+	rpc Probability(Empty) returns (ProbabilityResponse) {} 
+	rpc Measure(MeasureRequest)returns (QResponse) {}
+	rpc ProbabilityZeroAt(BitRequest) returns (ProbabilityAtResponse) {}
+	rpc ProbabilityOneAt(BitRequest) returns (ProbabilityAtResponse) {}
+	rpc MeasureAt(BitRequest) returns (QResponse) {}
+}
+
+// None is empty request
+message Empty {}
+
+message NumberOfBitResponse {
+	int32 bit = 1;
+}
+
+message EpsRequest {
+	repeated double eps = 1;
+}
+
+message BoolResponse {
+	bool ok = 1;
+}
+
+message DoubleResponse {
+	double data = 1;
+}
+
+message QRequest {
+	Qubit qubit = 1;
+}
+message QResponse {
+	Qubit qubit = 1;
+}
+
+message Complex128Response {
+	math.Complex128 complex = 1;
+}
+
+message MatrixRequest {
+	math.Matrix matrix = 1;
+}
+
+message MatrixResponse {
+	math.Matrix matrix = 1;
+}
+
+message EqualsRequest {
+	Qubit qubit = 1;
+	repeated double eps = 2;
+}
+
+message  AmplitudeResponse{
+	repeated math.Complex128 complex = 1;
+}
+
+message  ProbabilityResponse{
+	repeated double data = 1;
+}
+
+message MeasureRequest {
+	repeated int32 bit = 1;
+}
+
+message BitRequest {
+	int32 bit = 1;
+}
+
+message ProbabilityAtResponse {
+	repeated int32 i = 1;
+	repeated double d = 2;
+}

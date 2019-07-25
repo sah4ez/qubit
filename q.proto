@@ -1,8 +1,8 @@
 
 syntax = "proto3";
 
-import "qubit.proto";
-import "math.proto";
+import "qubit/qubit.proto";
+import "math/math.proto";
 
 option java_multiple_files = true;
 option java_package = "com.github/sah4ez";
