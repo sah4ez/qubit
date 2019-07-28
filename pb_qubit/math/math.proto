@@ -2,7 +2,7 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.github/sah4ez";
+option java_package = "com.github/sah4ez/pb_qubit";
 option java_outer_classname = "math";
 
 package math;
