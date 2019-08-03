@@ -1,8 +1,6 @@
 
 syntax = "proto3";
 
-import "math/math.proto";
-
 option java_multiple_files = true;
 option java_package = "com.github/sah4ez";
 option java_outer_classname = "qsim";
@@ -53,7 +51,7 @@ message QsimRequest {
 }
 
 message ApplyRequest {
-	math.Matrix m = 1;
+	Matrix m = 1;
 	repeated Q q = 2;
 }
 
@@ -68,7 +66,7 @@ message QsimResponse{
 }
 
 message Qubit {
-	math.Vector vector = 1;
+	Vector vector = 1;
 }
 
 
@@ -99,15 +97,15 @@ message QResponse {
 }
 
 message Complex128Response {
-	math.Complex128 complex = 1;
+	Complex128 complex = 1;
 }
 
 message MatrixRequest {
-	math.Matrix matrix = 1;
+	Matrix matrix = 1;
 }
 
 message MatrixResponse {
-	math.Matrix matrix = 1;
+	Matrix matrix = 1;
 }
 
 message EqualsRequest {
@@ -116,7 +114,7 @@ message EqualsRequest {
 }
 
 message  AmplitudeResponse{
-	repeated math.Complex128 complex = 1;
+	repeated Complex128 complex = 1;
 }
 
 message  ProbabilityResponse{
@@ -134,4 +132,17 @@ message BitRequest {
 message ProbabilityAtResponse {
 	repeated int32 i = 1;
 	repeated double d = 2;
+}
+
+message Complex128 {
+	double absolute = 1;
+	double theta = 2;
+}
+
+message Vector {
+	repeated Complex128 vector = 1;
+}
+
+message Matrix {
+	repeated Vector vectors = 1;
 }
